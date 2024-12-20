@@ -1,0 +1,29 @@
+#include <Servo.h>
+
+Servo servo1;  // Servo for the first finger (to grip the glass)
+Servo servo2;  // Servo for the second finger (to grip the glass)
+Servo servo3;  // Servo for the wrist (to rotate 180 degrees)
+
+void setup() {
+  // Attach each servo to the corresponding PWM pin
+  servo1.attach(9);  
+  servo2.attach(10);
+  servo3.attach(11);
+}
+
+void loop() {
+  // Move the hand to pick up the glass
+  servo1.write(45);   // Adjust this angle for finger position to grip
+  servo2.write(45);   // Adjust this angle for second finger
+  servo3.write(0);    // Move wrist to initial position (grip the glass)
+  delay(2000);        // Wait for 2 seconds to simulate gripping the glass
+  
+  // Rotate the hand 180 degrees
+  servo3.write(180);  // Rotate wrist 180 degrees to place the glass
+  delay(2000);        // Wait for 2 seconds to simulate placing the glass
+
+  // Open the hand to release the glass
+  servo1.write(0);    // Open first finger
+  servo2.write(0);    // Open second finger
+  delay(1000);        // Wait for a second before repeating
+}
